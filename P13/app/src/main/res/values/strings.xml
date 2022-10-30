@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Text and Scrolling Views</string>
+    <string name="artitle_title">Artitle Title</string>
+    <string name="artitle_subtitle">Artitle Subtitle</string>
+</resources>
