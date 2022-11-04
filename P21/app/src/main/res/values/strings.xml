@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Activities and Intents</string>
+    <string name="button_main">SEND</string>
+    <string name="text_received">Message Receivied</string>
+    <string name="editText_main">Enter Your Message Here</string>
+    <string name="button_second">Reply</string>
+    <string name="editText_second">Enter Reply Here</string>
+    <string name="text_header_reply">Replay Received</string>
+</resources>
