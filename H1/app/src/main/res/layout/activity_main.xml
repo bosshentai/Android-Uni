@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button_toast"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_700"
+        android:text="@string/button_label_toast"
+        android:onClick="showMessage"
+        android:textColor="@color/white"
+        android:textSize="60sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/bt_zero"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="resetCount"
+        android:backgroundTint="@color/purple_700"
+        android:text="@string/button_label_zero"
+        android:textColor="@color/white"
+        android:textSize="60sp"
+        app:layout_constraintTop_toBottomOf="@+id/button_toast"
+        />
+
+    <Button
+        android:id="@+id/bt_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_700"
+        android:onClick="countUp"
+        android:text="@string/button_label_count"
+        android:textColor="@color/white"
+        android:textSize="60sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_zero"
+        />
+
+    <TextView
+        android:id="@+id/show_count"
+        android:layout_width="163dp"
+        android:layout_height="211dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:background="#FFFF00"
+        android:gravity="center"
+        android:text="@string/count_initial_value"
+        android:textColor="@color/purple_500"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/button_toast"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--        app:layout_constraintBaseline_toBaselineOf="@+id/button_toast"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"/>-->
+
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Hello World!"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+</android.support.constraint.ConstraintLayout>
