@@ -16,9 +16,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mShowCount = (TextView) findViewById(R.id.show_count);
-
-//        final Button btCount = (Button) findViewById(R.id.bt_count);
-//        final Button btZero = (Button)  findViewById(R.id.bt_zero);
     }
 
     public void countUp(View view) {
@@ -42,4 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
         toast.show();
     }
+
+
 }
