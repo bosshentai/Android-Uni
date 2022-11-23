@@ -10,52 +10,47 @@
 
 
     <EditText
-    android:id="@+id/website_edittext"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/edittext_uri"
-    />
+        android:id="@+id/website_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/edittext_uri"/>
+
     <Button
         android:id="@+id/open_website_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_uri"
         android:layout_marginBottom="24dp"
+        android:text="@string/button_uri"
         android:onClick="openWebsite"/>
 
     <EditText
         android:id="@+id/location_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/edittext_loc"
-        />
+        android:text="@string/edittext_loc"/>
+
     <Button
         android:id="@+id/open_location_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_loc"
         android:layout_marginBottom="24dp"
+        android:text="@string/button_loc"
         android:onClick="openLocation"/>
 
     <EditText
         android:id="@+id/share_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/edittext_share"
-        />
+        android:text="@string/edittext_share"/>
+
     <Button
         android:id="@+id/share_text_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_share"
         android:layout_marginBottom="24dp"
+        android:text="@string/button_share"
         android:onClick="shareText"/>
 
-    <TextView
-        android:id="@+id/text_uri_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
 
 </LinearLayout>
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

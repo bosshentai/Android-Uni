@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private EditText mWebsiteEditText;
@@ -21,10 +22,22 @@ public class MainActivity extends AppCompatActivity {
         mWebsiteEditText = findViewById(R.id.website_edittext);
         mLocationEditText = findViewById(R.id.location_edittext);
         mShareEditText = findViewById(R.id.share_edittext);
+
+        Intent intent = getIntent();
+        Uri uri = intent.getData();
+        if(uri != null){
+//            String uri_string = "URI: " + uri.toString();
+            String uri_string = getString(R.string.uri_label)
+                    + uri.toString();
+
+            TextView textView = findViewById(R.id.text_uri_message);
+            textView.setText(uri_string);
+        }
     }
 
     public void openWebsite(View view) {
         String url = mWebsiteEditText.getText().toString();
+
         Uri webpage = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW,webpage);
 
@@ -37,8 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openLocation(View view) {
         String loc = mLocationEditText.getText().toString();
+        Log.d("ImplicitIntents",loc);
         Uri addresUri = Uri.parse("geo:0,0?q=" + loc);
         Intent intent = new Intent(Intent.ACTION_VIEW,addresUri);
+        Log.d("ImplicitIntents",addresUri.toString());
+//        intent.setPackage("com.google.adroid.apps.maps");
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
         }else{
