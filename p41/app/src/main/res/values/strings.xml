@@ -26,5 +26,13 @@
 
     <string name="sameday_text">Same day messenger service</string>
     <string name="nextday_text">Next day ground delivery</string>
-    <string name="pickup_text">Pick up</string>
+    <string name="pickup_text">Pick up</string>i
+
+    <string-array name="labels_array">
+        <item>Home</item>
+        <item>Word</item>
+        <item>Mobile</item>
+        <item>Other</item>
+        <item>O.o</item>
+    </string-array>
 </resources>
