@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         Uri addresUri = Uri.parse("geo:0,0?q=" + loc);
         Intent intent = new Intent(Intent.ACTION_VIEW,addresUri);
         Log.d("ImplicitIntents",addresUri.toString());
-//        intent.setPackage("com.google.adroid.apps.maps");
+        intent.setPackage("com.google.android.apps.maps");
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
         }else{

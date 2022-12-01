@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".OrderActivity">
 
-
     <TextView
         android:id="@+id/order_textView"
         android:layout_width="wrap_content"

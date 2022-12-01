@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -111,7 +112,8 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
 
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse(phoneNum));
-        if (intent.resolveActivity(getPackageManager()) != null) {
+        if (intent.resolveActivity(getPackageManager())!= null){
+//        if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         } else {
             Log.d("ImplicitiIntents", "Can't handle this!");
