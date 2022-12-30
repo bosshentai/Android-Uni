@@ -1,0 +1,8 @@
+version: "3.9"
+
+
+services:
+  pratico_api:
+    build: .
+    container_name: pratico_api
+
