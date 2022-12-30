@@ -3,4 +3,7 @@
     <string name="email_text">Email</string>
     <string name="email_hint">Insert your email</string>
     <string name="register_message">Dont have account Register here</string>
+    <string name="edit_settings">Edit</string>
+    <string name="delete_settings">Delete</string>
+    <string name="logout_settings">Log-Out</string>
 </resources>

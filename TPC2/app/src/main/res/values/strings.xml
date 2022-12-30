@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">TPC2</string>
+    <string name="email_text">Email</string>
+    <string name="email_hint">Insert your email</string>
+    <string name="password_text">Password</string>
+    <string name="password_hint">Insert your password</string>
+    <string name="register_message">Don\'t have account Register here</string>
+    <string name="edit_settings">Edit</string>
+    <string name="delete_settings">Delete</string>
+    <string name="logout_settings">Log-Out</string>
+    <string name="login_text">Login</string>
+    <string name="name_text">Name</string>
+    <string name="name_hint">Insert your name</string>
+    <string name="confirm_password_text">Confirm Password</string>
+    <string name="confirm_password_hint">Insert Confirm Password</string>
+    <string name="register_text">Register</string>
+    <string name="birth_text">BirthDay</string>
+    <string name="birth_hint">Insert your birth</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

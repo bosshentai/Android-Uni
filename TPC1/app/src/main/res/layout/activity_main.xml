@@ -21,6 +21,7 @@
        />
 
     <EditText
+        android:id="@+id/email_login_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -38,6 +39,7 @@
         />
 
     <EditText
+        android:id="@+id/password_login_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="200sp"
@@ -50,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
+        android:onClick="loginHandler"
         android:layout_gravity="center_horizontal"
       />
 

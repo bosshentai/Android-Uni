@@ -1,5 +1,7 @@
 package com.example.tpc1;
 
+import static com.example.tpc1.Db.userList;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,7 +18,7 @@ public class register extends AppCompatActivity {
 
     private static final String TAG = register.class.getName();
 
-    public ArrayList<User> mUsers;
+//    public ArrayList<User> mUsers;
 
     private EditText nameEditText;
     private EditText emailEditText;
@@ -33,7 +35,7 @@ public class register extends AppCompatActivity {
         passwordEditText = (EditText) findViewById(R.id.password_input);
         passwordConfirmEditText = (EditText) findViewById(R.id.password_confirm_input);
 
-        mUsers = new ArrayList<>();
+//        mUsers = new ArrayList<User>();
      }
 
     public void moveToMain(View view) {
@@ -81,10 +83,8 @@ public class register extends AppCompatActivity {
 
 
         if(!name.isEmpty() && !password.isEmpty() && !email.isEmpty()){
-            mUsers.add(new User(name,email,password));
-
+            Db.userList.add(new User(name,email,password));
             Log.d(TAG,"UserCreate");
-            return;
         }
 //        Log.d("User",name);
 //        Log.d("User",email);

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="normalDistantece">16dp</dimen>
+    <dimen name="editText_TextSize">25sp</dimen>
+    <dimen name="editText_width">200dp</dimen>
+</resources>
