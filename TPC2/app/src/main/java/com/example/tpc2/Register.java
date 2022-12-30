@@ -5,6 +5,7 @@ import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -61,7 +62,7 @@ public class Register extends AppCompatActivity {
 
     }
 
-    private void ToastDisplay(String message) {
+    private void toastDisplay(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
@@ -72,29 +73,66 @@ public class Register extends AppCompatActivity {
         String birth = birthEditText.getText().toString();
         String passwordConfirm = passwordConfirmEditText.getText().toString();
 
-        Boolean isNameValid = name.isEmpty();
+        Boolean isNameEmpty = name.isEmpty();
         Boolean isEmailEmpty = email.isEmpty();
-        Boolean isEmailValid = isEmailValid(email) == false;
+        Boolean isEmailValid = isEmailValid(email);
         Boolean isBirthEmpty = birth.isEmpty();
+        Boolean isPasswordEmpty = password.isEmpty();
+        Boolean isConfirmPasswordEmpty = passwordConfirm.isEmpty();
+        Boolean isPasswordsEquals = password.equals(passwordConfirm);
+        Boolean isFormOk = !isNameEmpty && !isEmailEmpty && isEmailValid && !isBirthEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty && isPasswordsEquals;
 
-        if (isNameValid) {
-            ToastDisplay("Empty name");
+
+        if (isNameEmpty) {
+            toastDisplay("Empty name");
             return;
         }
 
         if (isEmailEmpty) {
-            ToastDisplay("Empty email");
+            toastDisplay("Empty email");
             return;
         }
 
-        if (isEmailValid) {
-            ToastDisplay("Invalid Email");
+        if (!isEmailValid) {
+            toastDisplay("Invalid Email");
             return;
         }
 
-        if (isBirthEmpty){
-            ToastDisplay("Empty Birth");
+        if (isBirthEmpty) {
+            toastDisplay("Empty Birth");
             return;
+        }
+        if(isPasswordEmpty){
+            toastDisplay("Empty Password");
+            return;
+        }
+
+        if(isConfirmPasswordEmpty){
+            toastDisplay("Empty Confirm Password");
+            return;
+        }
+
+        if (!isPasswordsEquals){
+            toastDisplay("Not match password");
+            return;
+        }
+
+        for(int i = 0; i < Db.userList.size();i++){
+            User user = Db.userList.get(i);
+            if(email.equals(user.getEmail())){
+                toastDisplay("Email already used");
+                return;
+            }
+        }
+
+        if(isFormOk){
+            Db.userList.add(new User(name,email,birth,password));
+            Log.d(TAG,"UserCreate");
+            nameEditText.getText().clear();
+            emailEditText.getText().clear();
+            birthEditText.getText().clear();
+            passwordEditText.getText().clear();
+            passwordConfirmEditText.getText().clear();
         }
 
 
@@ -105,17 +143,10 @@ public class Register extends AppCompatActivity {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    private boolean isDateValid(String date) {
-
-        return false;
-    }
 
     public void moveToMain(View view) {
         finish();
     }
-
-
-
 
 
 }

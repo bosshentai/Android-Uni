@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText emailEditText;
     private EditText passwordEditText;
-    private String mUsername;
+
 
     private static final String TAG = MainActivity.class.getName();
 
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         emailEditText = (EditText) findViewById(R.id.email_login_input);
         passwordEditText = (EditText)  findViewById(R.id.password_login_input);
 
-        Db.userList.add(new User("Hernani Baptista","baptistamhernani@gmail.com","123"));
+//        Db.userList.add(new User("Hernani Baptista","baptistamhernani@gmail.com","123"));
 
     }
 

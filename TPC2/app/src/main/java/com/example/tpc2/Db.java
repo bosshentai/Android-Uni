@@ -6,6 +6,6 @@ public class Db {
 
     public static ArrayList<User> userList = new ArrayList<>();
 
-
+    public static User userSelected;
 
 }

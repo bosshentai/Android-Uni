@@ -5,7 +5,19 @@
 
     <item
         android:id="@+id/action_edit"
-        android:orderInCategory="10"
-        android:title="Edit"
+        android:orderInCategory="1"
+        android:title="@string/edit_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_delete"
+        android:orderInCategory="2"
+        android:title="@string/delete_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="3"
+        android:title="@string/logout_settings"
         app:showAsAction="never"/>
+
 </menu>
