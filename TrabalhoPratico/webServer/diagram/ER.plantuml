@@ -1,0 +1,14 @@
+@startuml trabalho
+
+
+entity contactos {
+  id :
+  FullName : String
+  PhoneNumber : String
+  BirthDay : Date
+  Sexo: Masculino | Feminino | outros
+  Favorite: boolean
+}
+
+
+@enduml
