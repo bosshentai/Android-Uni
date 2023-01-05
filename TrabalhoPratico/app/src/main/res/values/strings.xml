@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">AndroidClient</string>
+
+    <string name="full_name_text">Nome Completo</string>
+    <string name="full_name_hint">Insira o seu nome</string>
+    <string name="phone_number_text">Telefone</string>
+    <string name="phone_number_hint">Insira o numero do Telefone</string>
+    <string name="email_text">Email</string>
+    <string name="email_hint">Insira o teu email</string>
+    <string name="birthday_text">Data de aniversário</string>
+    <string name="birthday_hint">Insira data de nascimento</string>
+    <string name="sex_text">Sexo</string>
+    <string name="masc_option">Masc</string>
+    <string name="femin_option">Femin</string>
+    <string name="other_option">Outros</string>
+
+    <string name="cancel_text">Cancel</string>
+    <string name="add_text">Adicionar</string>
+    <string name="updated_text">Atualizar</string>
+
+    <string name="alert_dialog_title">Alerta</string>
+    <string name="alert_dialog_message">Click ok to .... or Cancel to stop</string>
+    <string name="confirm_text">Confirmar</string>
+
+    <string name="definition_option">Definições</string>
+    <string name="favorites_option">Favoritos</string>
+</resources>
