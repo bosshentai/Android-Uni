@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
-    tools:context=".NewContactActivity">
+    tools:context=".UpdateActivity">
 
 
     <LinearLayout
@@ -75,7 +74,6 @@
             android:width="@dimen/editText_width_size"
             android:hint="@string/birthday_hint"
             android:textSize="@dimen/textview_phone_Size"
-            android:inputType="date"
             />
 
         <TextView
@@ -126,8 +124,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:onClick="registerContactHandler"
-                android:text="@string/add_text" />
+                android:onClick="updateContactHandler"
+                android:text="@string/updated_text" />
         </LinearLayout>
 
     </LinearLayout>

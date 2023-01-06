@@ -8,13 +8,7 @@
     tools:context=".MainActivity">
 
 
-    <!--    <LinearLayout-->
 
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom"-->
-<!--        android:gravity="right"-->
-<!--        android:orientation="horizontal">-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contactRecycleView"
@@ -29,7 +23,7 @@
             android:layout_margin="16dp"
             android:onClick="newContactHandler"
             android:src="@drawable/ic_baseline_add_24" />
-<!--    </LinearLayout>-->
+
 
 
 
