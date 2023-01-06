@@ -26,12 +26,14 @@ public class UpdateActivity extends AppCompatActivity {
     private EditText emailEditText;
     private EditText birthDayEditText;
     private String selectedSex;
-    private String position;
+   
 
     private RadioButton mascButton;
     private RadioButton femButton;
     private RadioButton otherButton;
     private static final String LOG_TAG = UpdateActivity.class.getSimpleName();
+    private int contactSelectedPosition;
+    private String positionView;
 //    private ArrayList<Contact> contactList;
 
     @Override
@@ -40,7 +42,21 @@ public class UpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update);
 
         Intent getPositionView = getIntent();
-        position = getPositionView.getStringExtra("userData");
+        positionView = getPositionView.getStringExtra("userData");
+
+
+        Log.d(LOG_TAG,positionView);
+
+
+                for(int i = 0; i < Db.contactList.size(); i++){
+            if(Db.contactList.get(i).getId().equals(positionView)){
+                Log.d(LOG_TAG,Db.contactList.get(i).getId());
+                contactSelectedPosition = i;
+            }
+
+        }
+
+//        position = selectContact(positionView);
 
 
         fullNameEditText = findViewById(R.id.fullNameInput);
@@ -51,24 +67,45 @@ public class UpdateActivity extends AppCompatActivity {
         femButton = findViewById(R.id.selectedFemin);
         otherButton = findViewById(R.id.selectedOther);
 
-        
 
-        fullNameEditText.setText(Db.contactList.get(Integer.parseInt(position)).getFullName());
-        phoneNumberEditText.setText(Db.contactList.get(Integer.parseInt(position)).getPhoneNumber());
-        emailEditText.setText(Db.contactList.get(Integer.parseInt(position)).getEmail());
-        birthDayEditText.setText(Db.contactList.get(Integer.parseInt(position)).getBirth());
 
-        if (Db.contactList.get(Integer.parseInt(position)).getSex() == "Masculino") {
+
+
+
+        fullNameEditText.setText(Db.contactList.get(contactSelectedPosition).getFullName());
+//        fullNameEditText.setText(Db.contactList.get(Integer.parseInt(position)).getFullName());
+//        phoneNumberEditText.setText(Db.contactList.get(Integer.parseInt(position)).getPhoneNumber());
+        phoneNumberEditText.setText(Db.contactList.get(contactSelectedPosition).getPhoneNumber());
+//        emailEditText.setText(Db.contactList.get(Integer.parseInt(position)).getEmail());
+        emailEditText.setText(Db.contactList.get(contactSelectedPosition).getEmail());
+//        birthDayEditText.setText(Db.contactList.get(Integer.parseInt(position)).getBirth());
+        birthDayEditText.setText(Db.contactList.get(contactSelectedPosition).getBirth());
+
+
+//        if (Db.contactList.get(Integer.parseInt(position)).getSex() == "Masculino") {
+//            selectedSex = "Masculino";
+//            mascButton.setChecked(true);
+//
+//        }
+        if (Db.contactList.get(contactSelectedPosition).getSex() == "Masculino") {
             selectedSex = "Masculino";
             mascButton.setChecked(true);
 
         }
-
-        if (Db.contactList.get(Integer.parseInt(position)).getSex() == "Feminino") {
+//
+//        if (Db.contactList.get(Integer.parseInt(position)).getSex() == "Feminino") {
+//            selectedSex = "Feminino";
+//            femButton.setChecked(true);
+//        }
+        if (Db.contactList.get(contactSelectedPosition).getSex() == "Feminino") {
             selectedSex = "Feminino";
             femButton.setChecked(true);
         }
-        if (Db.contactList.get(Integer.parseInt(position)).getSex() == "Outros") {
+//        if (Db.contactList.get(Integer.parseInt(position)).getSex() == "Outros") {
+//            selectedSex = "Outros";
+//            otherButton.setChecked(true);
+//        }
+        if (Db.contactList.get(contactSelectedPosition).getSex() == "Outros") {
             selectedSex = "Outros";
             otherButton.setChecked(true);
         }
@@ -208,9 +245,9 @@ public class UpdateActivity extends AppCompatActivity {
 //
         if (isFormOK) {
 //
-            Log.d(LOG_TAG,position);
+//            Log.d(LOG_TAG,contactSelectedPosition);
 //            Db.contactList.add(new Contact(fullName, phone, email, birth, sex));
-            Db.contactList.get(Integer.parseInt(position)).updateContact(fullName,phone,email,birth,sex);
+            Db.contactList.get(contactSelectedPosition).updateContact(fullName,phone,email,birth,sex);
             finish();
         }else {
             Log.d(LOG_TAG,"Cant handle it");
@@ -220,6 +257,18 @@ public class UpdateActivity extends AppCompatActivity {
     private boolean isEmailValid(String email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
+
+
+
+//    private  String selectContact  (String id){
+//        for(int i = 0; i < Db.contactList.size(); i++){
+//            if(Db.contactList.get(i).getId() == id){
+//                contactSelectedPosition = id;
+//            }
+//        }
+//
+//        return  contactSelectedPosition;
+//    }
 
 
     private void toastDisplay(String message) {

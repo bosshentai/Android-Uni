@@ -23,6 +23,8 @@ public class NewContactActivity extends AppCompatActivity {
     private EditText emailEditText;
     private EditText birthDayEditText;
     private String selectedSex;
+
+    private int contactPosition;
 //    private RadioGroup radioGroup;
 //    private RadioButton radioButton;
 
@@ -186,6 +188,15 @@ public class NewContactActivity extends AppCompatActivity {
 //        toastDisplay(selectedSex);
     }
 
+//
+//    private int selectedContact (String id ) {
+////        int position = 0;
+//        for(int i = 0 ; i < Db.contactList.size(); i++){
+//            if(Db.contactList.get(i).getId() = )
+//        }
+//
+////        return position;
+//    }
 
     private boolean isEmailValid(String email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();

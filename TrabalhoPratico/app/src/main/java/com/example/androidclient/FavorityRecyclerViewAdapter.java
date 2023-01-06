@@ -85,7 +85,7 @@ public class FavorityRecyclerViewAdapter extends RecyclerView.Adapter<FavorityRe
 //                    }
 
                     moveToUpdateIntent.putExtra("userData", ""+ favList.get(getLayoutPosition()).getId());
-//                    context.startActivity(moveToUpdateIntent);
+                    context.startActivity(moveToUpdateIntent);
                 }
             });
 

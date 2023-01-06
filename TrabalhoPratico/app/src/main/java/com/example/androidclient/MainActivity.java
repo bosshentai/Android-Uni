@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
 //        setData();
 
-//        Log.d("123",Db.contactList);
-
+//        Log.d("123",Db.contactList.get(1).getId());
+//            Log.d("123",String.valueOf(System.currentTimeMillis()));
 
 
 

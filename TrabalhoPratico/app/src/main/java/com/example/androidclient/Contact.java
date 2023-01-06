@@ -2,15 +2,15 @@ package com.example.androidclient;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.UUID;
 
 public class Contact {
 
 
     private String id;
-
-
     private String fullName;
-
     private String email;
     private String birth;
     private String phoneNumber;
@@ -20,7 +20,7 @@ public class Contact {
 
     public Contact(String fullName, String phoneNumber, String email, String birth, String sex) {
 //        this.id = Timestamp().from(Instant.from());
-        this.id = String.valueOf(System.currentTimeMillis());
+        this.id = UUID.randomUUID().toString();
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -29,10 +29,14 @@ public class Contact {
         this.fav = false;
 
 
+
+
     }
 
 
     public Contact(String fullName, String phoneNumber, String email, String birth, String sex, boolean fav) {
+//        this.id = String.valueOf(LocalTime.now());
+        this.id = UUID.randomUUID().toString();
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -71,7 +75,7 @@ public class Contact {
 
 
     public void setFav(Boolean fav) {
-        fav = fav;
+        this.fav = fav;
     }
 
     public void updateContact(String fullName, String phoneNumber, String email, String birth, String sex) {
