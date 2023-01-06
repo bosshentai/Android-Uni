@@ -120,11 +120,11 @@ public class NewContactActivity extends AppCompatActivity {
 
     public void registerContactHandler(View view) {
         // Text
-        fullNameEditText.setText(R.string.example_full_name);
-        emailEditText.setText(R.string.example_email);
-        phoneNumberEditText.setText(R.string.example_number);
-        birthDayEditText.setText(R.string.example_birth);
-        selectedSex = "Masculino";
+//        fullNameEditText.setText(R.string.example_full_name);
+//        emailEditText.setText(R.string.example_email);
+//        phoneNumberEditText.setText(R.string.example_number);
+//        birthDayEditText.setText(R.string.example_birth);
+//        selectedSex = "Masculino";
 
 
         String fullName = fullNameEditText.getText().toString();

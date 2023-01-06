@@ -46,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
 //        Db.contactList.add(new Contact("Marvin Neves","666","mas@mail.com","125/12/1257","Feminino"));Db.contactList.add(new Contact("Marvin Neves","666","mas@mail.com","125/12/1257","Feminino"));
 
 
-        setData();
+//        setData();
 
 //        Log.d("123",Db.contactList);
 
 
 
 
-        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this, contactList);
+        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this);
 //        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this, contactList);
 
         contactRecyclerView.setAdapter(adapter);
@@ -109,11 +109,11 @@ public class MainActivity extends AppCompatActivity {
         contactList = new ArrayList<>();
 
 //        contactList.removeAll();
-//        for (int i = 0; i < Db.contactList.size(); i++){
-//
-//            contactList.remove(Db.contactList.get(i));
-//
-//        }
+        for (int i = 0; i < Db.contactList.size(); i++){
+
+            contactList.remove(Db.contactList.get(i));
+
+        }
 
         for (int i = 0; i < Db.contactList.size(); i++){
 
@@ -128,9 +128,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.d(LOG_TAG,"onStart");
-        setData();
+//        setData();
 
-        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this, contactList);
+        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this);
 
         contactRecyclerView.setAdapter(adapter);
         contactRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -141,9 +141,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Log.d(LOG_TAG,"onRestart");
-        setData();
+//        setData();
 
-        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this, contactList);
+        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this);
 
         contactRecyclerView.setAdapter(adapter);
         contactRecyclerView.setLayoutManager(new LinearLayoutManager(this));

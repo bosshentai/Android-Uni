@@ -51,6 +51,8 @@ public class UpdateActivity extends AppCompatActivity {
         femButton = findViewById(R.id.selectedFemin);
         otherButton = findViewById(R.id.selectedOther);
 
+        
+
         fullNameEditText.setText(Db.contactList.get(Integer.parseInt(position)).getFullName());
         phoneNumberEditText.setText(Db.contactList.get(Integer.parseInt(position)).getPhoneNumber());
         emailEditText.setText(Db.contactList.get(Integer.parseInt(position)).getEmail());

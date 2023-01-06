@@ -1,16 +1,26 @@
 package com.example.androidclient;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+
 public class Contact {
 
+
+    private String id;
+
+
     private String fullName;
+
     private String email;
     private String birth;
     private String phoneNumber;
     private String sex;
-    private  boolean fav;
+    private boolean fav;
 
 
-    public Contact(String fullName,String phoneNumber, String email, String birth, String sex) {
+    public Contact(String fullName, String phoneNumber, String email, String birth, String sex) {
+//        this.id = Timestamp().from(Instant.from());
+        this.id = String.valueOf(System.currentTimeMillis());
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -22,13 +32,17 @@ public class Contact {
     }
 
 
-    public Contact (String fullName,String phoneNumber, String email,String birth,String sex, boolean fav){
+    public Contact(String fullName, String phoneNumber, String email, String birth, String sex, boolean fav) {
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.birth = birth;
         this.sex = sex;
         this.fav = fav;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getPhoneNumber() {
@@ -56,11 +70,11 @@ public class Contact {
     }
 
 
-    public void setFav(Boolean fav){
-      fav = fav;
+    public void setFav(Boolean fav) {
+        fav = fav;
     }
 
-    public void updateContact (String fullName,String phoneNumber,String email,String birth,String sex){
+    public void updateContact(String fullName, String phoneNumber, String email, String birth, String sex) {
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.email = email;

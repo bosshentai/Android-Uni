@@ -25,7 +25,7 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
     private Context context;
 //    private ArrayList<Contact> mContacList;
 
-    public ContactRecyclerViewAdapter(Context context, ArrayList<Contact> db) {
+    public ContactRecyclerViewAdapter(Context context) {
         this.context = context;
 //        this.mContacList = db;
 
@@ -34,7 +34,7 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
     @NonNull
     @Override
     public ContactRecyclerViewAdapter.ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // This is where you inflate the layout (Giving a look to our rows
+        // This is where you inflate the layout (Giving a look to our rows)
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.contact_item_recycle_view, parent, false);
@@ -94,7 +94,9 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
 
 //                    Toast.makeText(context,  "CLick " + getLayoutPosition(), Toast.LENGTH_SHORT).show();
                     Intent moveToUpdateIntent = new Intent(context,UpdateActivity.class);
-                    moveToUpdateIntent.putExtra("userData","" + getLayoutPosition());
+//                    moveToUpdateIntent.putExtra("userData","" + getLayoutPosition());
+                    moveToUpdateIntent.putExtra("userData","" + Db.contactList.get(getLayoutPosition()).getId());
+
                     context.startActivity(moveToUpdateIntent);
                 }
             });
@@ -122,8 +124,6 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
                     return false;
                 }
             });
-
-
             menu.add(0, itemView.getId(), 0, "SMS").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -139,7 +139,6 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
                     return false;
                 }
             });
-
             menu.add(0, itemView.getId(), 0, "Favorite").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -179,7 +178,7 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
                     if(moveToShareIntent.resolveActivity(context.getPackageManager())!= null){
                         context.startActivity(moveToShareIntent);
                     }else{
-                        Log.d("ImplicitIntentts","Can't handle this");
+                        Log.d("ImplicitIntents","Can't handle this");
                     }
                     return false;
                 }
