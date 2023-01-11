@@ -18,6 +18,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import retrofit2.Retrofit;
+
 public class UpdateActivity extends AppCompatActivity {
 
 
@@ -33,7 +35,7 @@ public class UpdateActivity extends AppCompatActivity {
     private RadioButton otherButton;
     private static final String LOG_TAG = UpdateActivity.class.getSimpleName();
     private int contactSelectedPosition;
-    private String positionView;
+    private String contactId;
 //    private ArrayList<Contact> contactList;
 
     @Override
@@ -42,19 +44,19 @@ public class UpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update);
 
         Intent getPositionView = getIntent();
-        positionView = getPositionView.getStringExtra("userData");
+        contactId = getPositionView.getStringExtra("userData");
 
 
-        Log.d(LOG_TAG,positionView);
-
-
-                for(int i = 0; i < Db.contactList.size(); i++){
-            if(Db.contactList.get(i).getId().equals(positionView)){
-                Log.d(LOG_TAG,Db.contactList.get(i).getId());
-                contactSelectedPosition = i;
-            }
-
-        }
+//        Log.d(LOG_TAG,positionView);
+//
+//
+//                for(int i = 0; i < Db.contactList.size(); i++){
+//            if(Db.contactList.get(i).getId().equals(positionView)){
+//                Log.d(LOG_TAG,Db.contactList.get(i).getId());
+//                contactSelectedPosition = i;
+//            }
+//
+//        }
 
 //        position = selectContact(positionView);
 
@@ -269,6 +271,12 @@ public class UpdateActivity extends AppCompatActivity {
 //
 //        return  contactSelectedPosition;
 //    }
+
+
+    private Contact getSelect (String id){
+        Retrofit.Builder builder = new
+
+    }
 
 
     private void toastDisplay(String message) {

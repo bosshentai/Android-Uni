@@ -19,5 +19,5 @@ export interface IUpdateContact {
   phoneNumber?: string
   birth?: Date
   sex?: Sex
-  favorite?: boolean
+  // favorite?: boolean
 }

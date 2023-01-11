@@ -1,8 +1,10 @@
 package com.example.androidclient;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidclient.utils.IClientConnection;
@@ -138,6 +142,13 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
                     String phoneNumber = "tel:" + mContactList.get(getLayoutPosition()).getPhoneNumber();
                     Intent moveToCallIntent = new Intent(Intent.ACTION_CALL, Uri.parse(phoneNumber));
 //                    context.startActivity(moveToCallIntent);
+
+//                    int permissionCheck = ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE);
+//                    if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+//                        ActivityCompat.requestPermissions((Activity)context, new String[]{Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
+//                    } else {
+//                        context.startActivity(moveToCallIntent);
+//                    }
 
                     if (moveToCallIntent.resolveActivity(context.getPackageManager()) != null) {
                         context.startActivity(moveToCallIntent);

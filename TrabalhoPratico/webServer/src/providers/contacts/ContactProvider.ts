@@ -70,7 +70,7 @@ export const updateContactProvider = async ({
   phoneNumber,
   birth,
   sex,
-  favorite,
+  // favorite,
 }: IUpdateContact) => {
   const existed = await existedContactProvider({ id })
 
@@ -85,7 +85,7 @@ export const updateContactProvider = async ({
           phoneNumber,
           birth,
           sex,
-          favorite,
+          // favorite,
         },
       })
 
