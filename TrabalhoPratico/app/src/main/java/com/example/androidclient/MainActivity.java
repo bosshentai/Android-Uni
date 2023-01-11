@@ -12,13 +12,23 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.example.androidclient.utils.IClientConnection;
 
 import java.util.ArrayList;
+
+import okhttp3.internal.http.RetryAndFollowUpInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView contactRecyclerView;
-    private ArrayList<Contact> contactList;
+    private ArrayList<Contact> contactListMainAtivity;
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
@@ -28,36 +38,58 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         contactRecyclerView = findViewById(R.id.contactRecycleView);
 
-        // set
-        Db.contactList.add(new Contact("Hernani Baptista", "1234", "bap@mail.com", "22/10/1993", "Masculino",true));
-        Db.contactList.add(new Contact("Marvin Neves","666","mas@mail.com","125/12/1257","Feminino",false));
-        Db.contactList.add(new Contact("Iven Lopes","6780","gsdsd@mail.com","25/12/5235","Outros",true));
-        Db.contactList.add(new Contact("Alex Monteiro","789","fglcb@mail.com","5/12/1457","Masculino",true));
-        Db.contactList.add(new Contact("Yuri DinAmite","777","yi@mail.com","12/12/34323","Feminino"));
-//        Db.contactList.add(new Contact("Marvin Neves","666","mas@mail.com","125/12/1257","Feminino"));
-//        Db.contactList.add(new Contact("Marvin Neves","666","mas@mail.com","125/12/1257","Feminino"));
-//        Db.contactList.add(new Contact("Marvin Neves","666","mas@mail.com","125/12/1257","Feminino"));
-//        Db.contactList.add(new Contact("Marvin Neves","666","mas@mail.com","125/12/1257","Feminino"));
-//        Db.contactList.add(new Contact("Marvin Neves","666","mas@mail.com","125/12/1257","Feminino"));
-//        Db.contactList.add(new Contact("Marvin Neves","666","mas@mail.com","125/12/1257","Feminino"));
-//        Db.contactList.add(new Contact("Marvin Neves","666","mas@mail.com","125/12/1257","Feminino"));Db.contactList.add(new Contact("Marvin Neves","666","mas@mail.com","125/12/1257","Feminino"));
+        setData();
 
 
-//        setData();
+//        // Retrofit builder
+//        Retrofit.Builder builder = new Retrofit.Builder()
+//                .baseUrl("http://10.0.2.2:5020/")
+//                .addConverterFactory(GsonConverterFactory.create());
+//
+//        Retrofit retrofit = builder.build();
+//
+//        IClientConnection contact = retrofit.create(IClientConnection.class);
+//        Call<ArrayList<Contact>> call = contact.allContact();
+//
+//
+//        call.enqueue(new Callback<ArrayList<Contact>>() {
+//            @Override
+//            public void onResponse(Call<ArrayList<Contact>> call, Response<ArrayList<Contact>> response) {
+//
+//                if(!response.isSuccessful()){
+//                    Log.e("RESPONSE","onResponse: "+ response.code());
+//
+//                }
+//                else{
+//                    Log.d("response","onResponse: "+ response.body());
+//                    contactListMainAtivity = (ArrayList<Contact>) response.body();
+//
+//                    ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(MainActivity.this, contactListMainAtivity);
+////        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this, contactList);
+//
+//                    contactRecyclerView.setAdapter(adapter);
+//                    contactRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+//
+//
+//                }
+//
+////                ArrayList<Contact> repos =  response.body();
+////                Log.d("Body",repos.toString());
+////                contactList
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ArrayList<Contact>> call, Throwable t) {
+////                Toast.makeText(MainActivity.this,"Error to connetion",Toast.LENGTH_SHORT).show();
+//                Log.e("Error","OnFailure: "+ t.getMessage());
+//            }
+//        });
 
-//        Log.d("123",Db.contactList.get(1).getId());
-//            Log.d("123",String.valueOf(System.currentTimeMillis()));
 
 
 
-        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this);
-//        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this, contactList);
-
-        contactRecyclerView.setAdapter(adapter);
-        contactRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
     }
@@ -105,21 +137,49 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setData() {
+        // Retrofit builder
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:5020/")
+                .addConverterFactory(GsonConverterFactory.create());
 
-        contactList = new ArrayList<>();
+        Retrofit retrofit = builder.build();
 
-//        contactList.removeAll();
-        for (int i = 0; i < Db.contactList.size(); i++){
+        IClientConnection contact = retrofit.create(IClientConnection.class);
+        Call<ArrayList<Contact>> call = contact.allContact();
 
-            contactList.remove(Db.contactList.get(i));
 
-        }
+        call.enqueue(new Callback<ArrayList<Contact>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Contact>> call, Response<ArrayList<Contact>> response) {
 
-        for (int i = 0; i < Db.contactList.size(); i++){
+                if(!response.isSuccessful()){
+                    Log.e("RESPONSE","onResponse: "+ response.code());
 
-            contactList.add(Db.contactList.get(i));
+                }
+                else{
+                    Log.d("response","onResponse: "+ response.body());
+                    contactListMainAtivity = (ArrayList<Contact>) response.body();
 
-        }
+                    ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(MainActivity.this, contactListMainAtivity);
+//        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this, contactList);
+
+                    contactRecyclerView.setAdapter(adapter);
+                    contactRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+
+                }
+
+//                ArrayList<Contact> repos =  response.body();
+//                Log.d("Body",repos.toString());
+//                contactList
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Contact>> call, Throwable t) {
+//                Toast.makeText(MainActivity.this,"Error to connetion",Toast.LENGTH_SHORT).show();
+                Log.e("Error","OnFailure: "+ t.getMessage());
+            }
+        });
 
     }
 
@@ -127,25 +187,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(LOG_TAG,"onStart");
-//        setData();
+        Log.d(LOG_TAG, "onStart");
+        setData();
 
-        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this);
-
-        contactRecyclerView.setAdapter(adapter);
-        contactRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this,contactListMainAtivity);
+//
+//        contactRecyclerView.setAdapter(adapter);
+//        contactRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d(LOG_TAG,"onRestart");
-//        setData();
+        Log.d(LOG_TAG, "onRestart");
+        setData();
 
-        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this);
-
-        contactRecyclerView.setAdapter(adapter);
-        contactRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        ContactRecyclerViewAdapter adapter = new ContactRecyclerViewAdapter(this,contactListMainAtivity);
+//
+//        contactRecyclerView.setAdapter(adapter);
+//        contactRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

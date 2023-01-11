@@ -18,16 +18,25 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androidclient.utils.IClientConnection;
+
 import java.util.ArrayList;
 
-public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecyclerViewAdapter.ContactViewHolder>{
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecyclerViewAdapter.ContactViewHolder> {
 
     private Context context;
-//    private ArrayList<Contact> mContacList;
+    private ArrayList<Contact> mContactList;
 
-    public ContactRecyclerViewAdapter(Context context) {
+    public ContactRecyclerViewAdapter(Context context, ArrayList<Contact> contactFullList) {
         this.context = context;
-//        this.mContacList = db;
+        this.mContactList = contactFullList;
 
     }
 
@@ -47,16 +56,28 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
         // base on the position of the recycler view
 
 
-        holder.contactFullName.setText(Db.contactList.get(position).getFullName());
-        holder.contactPhoneNumber.setText(Db.contactList.get(position).getPhoneNumber());
-        holder.contactEmail.setText(Db.contactList.get(position).getEmail());
-//        holder.position = position;
+        holder.contactFullName.setText(mContactList.get(position).getFullName());
+        holder.contactPhoneNumber.setText(mContactList.get(position).getPhoneNumber());
+        holder.contactEmail.setText(mContactList.get(position).getEmail());
 
-        if (Db.contactList.get(position).getFav() == true) {
+        if (mContactList.get(position).getFav() == true) {
             holder.favoriteIcon.setImageResource(R.drawable.ic_baseline_star_24);
         } else {
             holder.favoriteIcon.setImageResource(R.drawable.ic_baseline_star_border_24);
         }
+
+
+        // change
+//        holder.contactFullName.setText(Db.contactList.get(position).getFullName());
+//        holder.contactPhoneNumber.setText(Db.contactList.get(position).getPhoneNumber());
+//        holder.contactEmail.setText(Db.contactList.get(position).getEmail());
+////        holder.position = position;
+//
+//        if (Db.contactList.get(position).getFav() == true) {
+//            holder.favoriteIcon.setImageResource(R.drawable.ic_baseline_star_24);
+//        } else {
+//            holder.favoriteIcon.setImageResource(R.drawable.ic_baseline_star_border_24);
+//        }
 
 //        holder.favoriteIcon.setImageResource();
     }
@@ -64,7 +85,11 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
     @Override
     public int getItemCount() {
         // the recycler view just wants to know the number of items you want displayed
-        return Db.contactList.size();
+
+        if (mContactList != null) {
+            return mContactList.size();
+        }
+        return 0;
     }
 
     public class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
@@ -93,9 +118,9 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
 //                    int position = getLayoutPosition();
 
 //                    Toast.makeText(context,  "CLick " + getLayoutPosition(), Toast.LENGTH_SHORT).show();
-                    Intent moveToUpdateIntent = new Intent(context,UpdateActivity.class);
+                    Intent moveToUpdateIntent = new Intent(context, UpdateActivity.class);
 //                    moveToUpdateIntent.putExtra("userData","" + getLayoutPosition());
-                    moveToUpdateIntent.putExtra("userData","" + Db.contactList.get(getLayoutPosition()).getId());
+                    moveToUpdateIntent.putExtra("userData", "" + mContactList.get(getLayoutPosition()).getId());
 
                     context.startActivity(moveToUpdateIntent);
                 }
@@ -110,7 +135,7 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
             menu.add(0, itemView.getId(), 0, "Call").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    String phoneNumber = "tel:" + Db.contactList.get(getLayoutPosition()).getPhoneNumber();
+                    String phoneNumber = "tel:" + mContactList.get(getLayoutPosition()).getPhoneNumber();
                     Intent moveToCallIntent = new Intent(Intent.ACTION_CALL, Uri.parse(phoneNumber));
 //                    context.startActivity(moveToCallIntent);
 
@@ -127,12 +152,12 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
             menu.add(0, itemView.getId(), 0, "SMS").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    String number = Db.contactList.get(getLayoutPosition()).getPhoneNumber();
-                    Intent moveToSMS = new Intent(Intent.ACTION_VIEW,Uri.fromParts("sms",number,null));
-                    if(moveToSMS.resolveActivity(context.getPackageManager()) != null) {
+                    String number = mContactList.get(getLayoutPosition()).getPhoneNumber();
+                    Intent moveToSMS = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", number, null));
+                    if (moveToSMS.resolveActivity(context.getPackageManager()) != null) {
                         context.startActivity(moveToSMS);
-                    }else{
-                        Log.d("ImplicitIntents","Can't handle this");
+                    } else {
+                        Log.d("ImplicitIntents", "Can't handle this");
                     }
 //                    if(moveToSMS.resolveActivity())
 
@@ -145,14 +170,14 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
 //                    Log.d("123",Db.contactList.get(getLayoutPosition()).getFullName());
 
 //                    Db.contactList.get(position)
-                    if (Db.contactList.get(getLayoutPosition()).getFav() == true) {
+                    if (mContactList.get(getLayoutPosition()).getFav() == true) {
                         Db.contactList.get(getLayoutPosition()).setFav(false);
-                        Toast.makeText(itemView.getContext(), "Remove Favorite " + Db.contactList.get(getLayoutPosition()).getFullName(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(itemView.getContext(), "Remove Favorite " + mContactList.get(getLayoutPosition()).getFullName(), Toast.LENGTH_SHORT).show();
 //                        Toast.makeText(itemView.getContext(), "Remove Favorite " + position, Toast.LENGTH_SHORT).show();
 
                     } else {
-                        Db.contactList.get(getLayoutPosition()).setFav(true);
-                        Toast.makeText(itemView.getContext(), "Add Favorite " + Db.contactList.get(getLayoutPosition()).getFullName(), Toast.LENGTH_SHORT).show();
+                        mContactList.get(getLayoutPosition()).setFav(true);
+                        Toast.makeText(itemView.getContext(), "Add Favorite " + mContactList.get(getLayoutPosition()).getFullName(), Toast.LENGTH_SHORT).show();
 //                        Toast.makeText(itemView.getContext(), "Add Favorite " + position, Toast.LENGTH_SHORT).show();
                     }
                     return false;
@@ -162,8 +187,12 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
             menu.add(0, itemView.getId(), 0, "Remove").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    Toast.makeText(itemView.getContext(), "Remove " + Db.contactList.get(getLayoutPosition()).getFullName(), Toast.LENGTH_SHORT).show();
-                    Db.contactList.remove(getLayoutPosition());
+
+//                    Toast.makeText(itemView.getContext(), "Remove " + mContactList.get(getLayoutPosition()).getFullName(), Toast.LENGTH_SHORT).show();
+                    String contatSelectId = mContactList.get(getLayoutPosition()).getId();
+                    removeItem(contatSelectId);
+                    mContactList.remove(getLayoutPosition());
+                    notifyDataSetChanged();
                     return false;
                 }
             });
@@ -173,14 +202,44 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
                 public boolean onMenuItemClick(MenuItem item) {
                     String number = Db.contactList.get(getLayoutPosition()).getPhoneNumber();
                     Intent moveToShareIntent = new Intent(Intent.ACTION_SEND);
-                    moveToShareIntent.putExtra(Intent.EXTRA_TEXT,number);
+                    moveToShareIntent.putExtra(Intent.EXTRA_TEXT, number);
                     moveToShareIntent.setType("text/plain");
-                    if(moveToShareIntent.resolveActivity(context.getPackageManager())!= null){
+                    if (moveToShareIntent.resolveActivity(context.getPackageManager()) != null) {
                         context.startActivity(moveToShareIntent);
-                    }else{
-                        Log.d("ImplicitIntents","Can't handle this");
+                    } else {
+                        Log.d("ImplicitIntents", "Can't handle this");
                     }
                     return false;
+                }
+            });
+        }
+
+
+        public void removeItem(String id) {
+            Retrofit.Builder builder = new Retrofit.Builder()
+                    .baseUrl("http://10.0.2.2:5020/")
+                    .addConverterFactory(GsonConverterFactory.create());
+
+            Retrofit retrofit = builder.build();
+
+            IClientConnection contact = retrofit.create(IClientConnection.class);
+            Call<ResponseBody> call = contact.deleteContact(id);
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(!response.isSuccessful()){
+                        Log.e("RESPONSE","Error delete contact"+ response.message());
+                    }else{
+
+                        Log.e("REsponse","Contact Deleted");
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.e("Error", "Error delete contact" + t.getMessage());
                 }
             });
         }

@@ -34,16 +34,16 @@ public class Contact {
     }
 
 
-    public Contact(String fullName, String phoneNumber, String email, String birth, String sex, boolean fav) {
-//        this.id = String.valueOf(LocalTime.now());
-        this.id = UUID.randomUUID().toString();
-        this.fullName = fullName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.birth = birth;
-        this.sex = sex;
-        this.fav = fav;
-    }
+//    public Contact(String fullName, String phoneNumber, String email, String birth, String sex, boolean fav) {
+////        this.id = String.valueOf(LocalTime.now());
+//        this.id = UUID.randomUUID().toString();
+//        this.fullName = fullName;
+//        this.email = email;
+//        this.phoneNumber = phoneNumber;
+//        this.birth = birth;
+//        this.sex = sex;
+//        this.fav = fav;
+//    }
 
     public String getId() {
         return id;

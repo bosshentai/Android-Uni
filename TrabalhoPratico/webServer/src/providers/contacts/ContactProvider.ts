@@ -11,6 +11,14 @@ export const GetAllContactsProvider = async () => {
   return list
 }
 
+export const GetAllFavContactsProvider = async () => {
+  const list = await prismaClient.contact.findMany({
+    where: {
+      favorite: true,
+    },
+  })
+}
+
 export const GetOneContactProvider = async (id: string) => {
   const selected = await prismaClient.contact.findUnique({
     where: {
@@ -93,24 +101,47 @@ export const updateContactProvider = async ({
   // })
 }
 
+export const updateContactToFavProvider = async ({
+  id,
+  favorite,
+}: {
+  id: string
+  favorite: boolean
+}) => {
+  const existed = await existedContactProvider({ id })
+
+  if (existed === true) {
+    const getOne = await GetOneContactProvider(id)
+
+    const update = prismaClient.contact.update({
+      where: {
+        id,
+      },
+      data: {
+        favorite: favorite,
+      },
+    })
+
+    return update
+  }
+
+  return null
+}
+
 export const deleteContactProvider = async ({
   id,
 }: IUpdateContact) => {
   const existed = await existedContactProvider({ id })
 
-
-  if(existed === true)
-  {
+  if (existed === true) {
     const eliminated = await prismaClient.contact.delete({
-      where:{
-        id
-      }
+      where: {
+        id,
+      },
     })
-
 
     return eliminated
   }
-
 
   return null
 }

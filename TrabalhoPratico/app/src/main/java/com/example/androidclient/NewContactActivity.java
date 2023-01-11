@@ -6,15 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.androidclient.utils.IClientConnection;
+
 import java.util.Calendar;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewContactActivity extends AppCompatActivity {
 
@@ -38,6 +47,7 @@ public class NewContactActivity extends AppCompatActivity {
         phoneNumberEditText = findViewById(R.id.phoneNumberInput);
         emailEditText = findViewById(R.id.emailInput);
         birthDayEditText = findViewById(R.id.birthInput);
+
 
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
@@ -70,18 +80,18 @@ public class NewContactActivity extends AppCompatActivity {
             case R.id.selectedMasc:
                 if (checked) {
 //                    toastDisplay("Masculino");
-                    selectedSex = "Masculino";
+                    selectedSex = "MASC";
                 }
                 break;
             case R.id.selectedFemin:
                 if (checked) {
-                    selectedSex = "Feminino";
+                    selectedSex = "FEMIN";
 
                 }
                 break;
             case R.id.selectedOther:
                 if (checked) {
-                    selectedSex = "Outros";
+                    selectedSex = "OTHER";
                 }
                 break;
             default:
@@ -122,11 +132,11 @@ public class NewContactActivity extends AppCompatActivity {
 
     public void registerContactHandler(View view) {
         // Text
-//        fullNameEditText.setText(R.string.example_full_name);
-//        emailEditText.setText(R.string.example_email);
-//        phoneNumberEditText.setText(R.string.example_number);
-//        birthDayEditText.setText(R.string.example_birth);
-//        selectedSex = "Masculino";
+        fullNameEditText.setText(R.string.example_full_name);
+        emailEditText.setText(R.string.example_email);
+        phoneNumberEditText.setText(R.string.example_number);
+        birthDayEditText.setText(R.string.example_birth);
+        selectedSex = "MASC";
 
 
         String fullName = fullNameEditText.getText().toString();
@@ -136,15 +146,13 @@ public class NewContactActivity extends AppCompatActivity {
         String sex = selectedSex;
 
 
-
-
         Boolean isFullNameEmpty = fullName.isEmpty();
         Boolean isEmailEmpty = email.isEmpty();
         Boolean isEmailValid = isEmailValid(email);
         Boolean isPhoneEmpty = phone.isEmpty();
         Boolean isBirthEmpty = birth.isEmpty();
         Boolean isSexEmpty = sex.isEmpty();
-        Boolean isFormOK = !isFullNameEmpty && !isBirthEmpty && isEmailValid  && !isSexEmpty && !isPhoneEmpty;
+        Boolean isFormOK = !isFullNameEmpty && !isBirthEmpty && isEmailValid && !isSexEmpty && !isPhoneEmpty;
 
 
         if (isFullNameEmpty) {
@@ -153,7 +161,7 @@ public class NewContactActivity extends AppCompatActivity {
         }
 
 
-        if (isPhoneEmpty){
+        if (isPhoneEmpty) {
             toastDisplay("Numero de Telephone Vazio");
             return;
         }
@@ -181,8 +189,36 @@ public class NewContactActivity extends AppCompatActivity {
 
 
         if (isFormOK) {
-            Db.contactList.add(new Contact(fullName, phone, email, birth, sex));
-            finish();
+            Retrofit.Builder builder = new Retrofit.Builder()
+                    .baseUrl("http://10.0.2.2:5020/")
+                    .addConverterFactory(GsonConverterFactory.create());
+
+            Retrofit retrofit = builder.build();
+
+            IClientConnection contactService = retrofit.create(IClientConnection.class);
+            Contact newContact = new Contact(fullName, phone, email, birth, sex);
+            Call<ResponseBody> call = contactService.createContact(newContact);
+
+            call.enqueue(new Callback<ResponseBody>() {
+
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (!response.isSuccessful()) {
+                        Log.e("RESPONSE", "OnResponse: " + response.code());
+                        Log.e("RESPONSE","OnMessage:  " + response.message());
+                    } else {
+                        Log.d("response", "OnResponse: " + response.body());
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.e("Error", "OnFailure" + t.getMessage());
+                }
+            });
+//            Db.contactList.add(new Contact(fullName, phone, email, birth, sex));
+//            finish();
         }
 
 //        toastDisplay(selectedSex);

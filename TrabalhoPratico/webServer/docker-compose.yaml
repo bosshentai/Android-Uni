@@ -6,6 +6,7 @@ services:
     build: .
     entrypoint: .docker/entrypoint.sh
     container_name: pratico_api
+    
     ports:
       - "5020:5020"
     volumes:
