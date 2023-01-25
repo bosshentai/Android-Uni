@@ -273,10 +273,10 @@ public class UpdateActivity extends AppCompatActivity {
 //    }
 
 
-    private Contact getSelect (String id){
-        Retrofit.Builder builder = new
-
-    }
+//    private Contact getSelect (String id){
+//        Retrofit.Builder builder = new
+//
+//    }
 
 
     private void toastDisplay(String message) {

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Agenda de Contactos</string>
+    <string name="agenda_de_contactos">Agenda de Contactos!</string>
+    <string name="novo_contacto">Novo Contacto</string>
+    <string name="nome">Nome</string>
+    <string name="morada">Morada</string>
+    <string name="telemovel">Telemovel</string>
+    <string name="sexo">Sexo</string>
+    <string name="email">Email</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="id">ID</string>
+</resources>
