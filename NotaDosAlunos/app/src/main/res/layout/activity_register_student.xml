@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/user"
+    tools:context=".RegisterStudentActivity">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:gravity="center_vertical"
+
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/student_name"
+            android:textColor="@color/text"
+            android:textSize="@dimen/register_text_size" />
+
+        <EditText
+            android:id="@+id/register_student_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="@dimen/register_edit_width"
+            android:height="@dimen/register_edit_height"
+            android:inputType="textPersonName"
+            android:textColor="@color/text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/student_score1"
+            android:textColor="@color/text"
+            android:textSize="@dimen/register_text_size" />
+
+        <EditText
+            android:id="@+id/register_student_score1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="@dimen/register_edit_width"
+            android:height="@dimen/register_edit_height"
+            android:inputType="numberDecimal"
+            android:textColor="@color/text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/student_score2"
+            android:textColor="@color/text"
+            android:textSize="@dimen/register_text_size" />
+
+        <EditText
+            android:id="@+id/register_student_score2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="@dimen/register_edit_width"
+            android:height="@dimen/register_edit_height"
+            android:inputType="numberDecimal"
+            android:textColor="@color/text" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:width="@dimen/register_btn_width"
+                    android:height="@dimen/register_btn_height"
+                    android:backgroundTint="@color/btn_red"
+                    android:text="@string/btn_cancel"
+                    android:textSize="@dimen/btn_text_size"
+                    android:onClick="cancelRegister"/>
+
+
+                <Button
+                    android:id="@+id/btn_add_student"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:width="@dimen/register_btn_width"
+                    android:height="@dimen/register_btn_height"
+                    android:backgroundTint="@color/btn_green"
+                    android:text="@string/btn_add"
+                    android:textSize="@dimen/btn_text_size"
+                    android:onClick="registerStudent"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+
+    <!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    tools:context=".RegisterStudentActivity">-->
+
+    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->

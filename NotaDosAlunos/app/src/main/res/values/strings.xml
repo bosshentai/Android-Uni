@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">PDM</string>
+    <string name="btn_approved">Approved</string>
+    <string name="btn_exam">Exam</string>
+    <string name="btn_register">Register</string>
+
+    <string name="student_name">Student Name</string>
+    <string name="student_score1">First Grade</string>
+    <string name="student_score2">Second Grade</string>
+
+    <string name="toast_name_empty">Name is Empty</string>
+    <string name="toast_first_grade_empty">First Grade is Empty</string>
+    <string name="toast_second_grade_empty">Second Grade is Empty</string>
+    <string name="toast_name_invalid">Name Invalid</string>
+    <string name="toast_first_grade_invalid">First grade between 0 and 20</string>
+    <string name="toast_second_grade_invalid">Second grade between 0 and 20</string>
+
+
+
+    <string name="btn_add">Add</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <string name="alert_title">Alert</string>
+    <string name="alert_message">Want to Cancel Register Student?</string>
+    <string name="alert_positive_btn">Yes</string>
+    <string name="alert_negative_btn">No</string>
+
+    <string name="db_problem">Problem to connect </string>
+    <string name="problem_insert_student">Problem Registing Student </string>
+</resources>

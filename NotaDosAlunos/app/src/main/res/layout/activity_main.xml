@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:layout_width="@dimen/main_btn_width"
+        android:layout_height="wrap_content"
+        android:onClick="moveToApproved"
+        android:text="@string/btn_approved"
+        android:textSize="@dimen/main_btn_text_size" />
+
+    <Button
+        android:layout_width="@dimen/main_btn_width"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_exam"
+        android:onClick="moveToExam"
+        android:textSize="@dimen/main_btn_text_size" />
+
+    <Button
+        android:layout_width="@dimen/main_btn_width"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_register"
+        android:onClick="moveToRegister"
+        android:textSize="@dimen/main_btn_text_size" />
+
+</LinearLayout>
+
+    <!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    tools:context=".MainActivity">-->
+
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Hello World!"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
