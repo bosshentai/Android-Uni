@@ -27,4 +27,7 @@
 
     <string name="db_problem">Problem to connect </string>
     <string name="problem_insert_student">Problem Registing Student </string>
+
+    <string name="approved_title">Approved</string>
+    <string name="exam_title">Exam</string>
 </resources>

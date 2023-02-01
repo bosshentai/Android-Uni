@@ -35,6 +35,8 @@ public class ApprovedStudentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approved_student);
+        getSupportActionBar().setTitle(R.string.approved_title);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         db = new DBHelper(this);
 
