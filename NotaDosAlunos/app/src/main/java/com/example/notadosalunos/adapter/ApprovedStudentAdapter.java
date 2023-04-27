@@ -77,8 +77,6 @@ public class ApprovedStudentAdapter extends RecyclerView.Adapter<ApprovedStudent
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
-
-
                 @Override
                 public void onClick(View view) {
                     PopupMenu popup = new PopupMenu(context, itemView);
